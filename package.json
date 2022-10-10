@@ -10,7 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-telegram-bot-api": "^0.59.0"
+    "dotenv": "^16.0.3",
+    "node-telegram-bot-api": "^0.59.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.24.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
