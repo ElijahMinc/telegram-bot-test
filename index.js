@@ -5,8 +5,8 @@ const generateRandomNumber = require("./helpers/generateRandomNumber.js")
 const { gameOptions, gameAgainOptions } = require("./utils/gameOptions.js")
 const { COMMANDS, customCommands } = require("./constant.js")
 const TelegramBot = require("node-telegram-bot-api")
-const sequelize = require("./db/storage.js")
-const UserModel = require("./db/models/User.js")
+const UserModel = require("./models/User.js")
+const mongoose = require("mongoose")
 
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true })
 
@@ -34,8 +34,7 @@ const startGame = async (
 
 const start = async () => {
   try {
-    await sequelize.authenticate() // подключение к бд
-    await sequelize.sync() // сверяем состояние бд со схемой данных, которые описаны тут
+    await mongoose.connect(process.env.DB_CONNECT_URL)
   } catch (error) {
     console.log("error", error)
   }
