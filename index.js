@@ -47,9 +47,15 @@ const start = async () => {
     try {
       switch (text) {
         case COMMANDS.START:
-          await UserModel.create({
+          const userModel = await UserModel.findOne({
             chatId,
           })
+
+          if (!userModel) {
+            await UserModel.create({
+              chatId,
+            })
+          }
 
           await bot.sendSticker(
             chatId,
@@ -83,6 +89,7 @@ const start = async () => {
           return await bot.sendMessage(chatId, "Це що такє??")
       }
     } catch (error) {
+      console.log(error)
       return bot.sendMessage(chatId, "Уууупс... щось пішло не так..")
     }
   })
